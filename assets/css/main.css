@@ -913,8 +913,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 @media (max-width: 640px) {
     .g-2, .g-3, .g-4, .slab-grid, .systype-grid, .map-cards, .contact-cards, .process-grid,
-    .counter-wrap, .video-grid, .gal-grid, .form-grid, .svc-gal, .sidebar, .co-stats,
+    .counter-wrap, .gal-grid, .form-grid, .svc-gal, .sidebar, .co-stats,
     .info-grid, .pmsg-strip { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .video-card .v-sound { width: 30px; height: 30px; font-size: .72rem; right: 8px; bottom: 8px; }
+    .video-card .v-cap { font-size: .78rem; padding: 30px 10px 10px; }
     .pmsg-strip figure:nth-child(3) img { aspect-ratio: 16/10; }
     .pmsg-strip { display: none; }
     .info-card-img {
