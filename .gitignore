@@ -1,0 +1,14 @@
+# Archived template files (old blog/service-2/privacy/terms pages, unused CSS/JS/img)
+# — nothing in the live site references these; kept locally, not version-controlled.
+_removed-pages/
+
+# Stray Windows shortcut, not part of the site
+*.lnk
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# Python build-script bytecode cache
+__pycache__/
+*.pyc
