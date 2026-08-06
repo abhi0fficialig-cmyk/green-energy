@@ -242,28 +242,92 @@
     });
 
     /* ---------- Forms ----------
-       No server is required: the enquiry is packaged and handed off to WhatsApp
-       so it lands directly on the company phone. Replace this handler with a
-       normal POST if a backend/mailer is added later. */
-    var WA_NUMBER = '917441176223';
+       No backend: every enquiry is packaged into a mailto: link addressed to
+       the company inbox with the submitted fields pre-filled in the body,
+       then handed to the visitor's own default email client so they can
+       review it and press Send themselves. Replace with a real POST to a
+       backend/mailer later if one is added — everything else (validation,
+       success/error messaging) can stay as is. */
+    var CONTACT_EMAIL = 'Greenenergy51@gmail.com';
+    var MAILTO_SAFE_LENGTH = 1800; // conservative cross-client mailto: URL budget
+
+    function fieldLabel(form, el) {
+        if (el.id) {
+            var lab = form.querySelector('label[for="' + el.id + '"]');
+            if (lab) return lab.textContent.replace(/\s*\(.*?\)\s*/g, '').trim();
+        }
+        var repeat = /^phone(\d+)$/.exec(el.name || '');
+        if (repeat) return 'Mobile Number ' + repeat[1];
+        return el.name ? el.name.charAt(0).toUpperCase() + el.name.slice(1) : 'Field';
+    }
+
     document.querySelectorAll('form[data-ajax]').forEach(function (f) {
+        var msg = f.querySelector('.form-msg');
+
+        function showMsg(isError, html) {
+            if (!msg) return;
+            msg.innerHTML = html;
+            msg.classList.toggle('is-error', !!isError);
+            msg.classList.add('show');
+            clearTimeout(msg._hideTimer);
+            msg._hideTimer = setTimeout(function () { msg.classList.remove('show'); }, 16000);
+        }
+
         f.addEventListener('submit', function (e) {
             e.preventDefault();
-            var title = f.getAttribute('data-subject') || 'Website Enquiry';
-            var lines = ['*' + title + '* — Green Solar Energy'];
-            f.querySelectorAll('input, select, textarea').forEach(function (el) {
-                if (!el.name || !el.value) return;
-                var lab = f.querySelector('label[for="' + el.id + '"]');
-                lines.push((lab ? lab.textContent.trim() : el.name) + ': ' + el.value.trim());
-            });
-            window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
-            var msg = f.querySelector('.form-msg');
-            if (msg) {
-                msg.classList.add('show');
-                msg.textContent = 'Thank you! Your details have been sent to our team on WhatsApp. We will call you on the number you provided within 24 hours.';
+
+            /* ---- validation: native constraints (required / type=email / pattern) ---- */
+            if (!f.checkValidity()) {
+                f.reportValidity();
+                return;
             }
-            f.reset();
-            setTimeout(function () { if (msg) msg.classList.remove('show'); }, 12000);
+
+            var fields = Array.prototype.slice.call(f.querySelectorAll('input[name], select[name], textarea[name]'));
+            var filled = fields.filter(function (el) { return el.value && el.value.trim(); });
+            if (!filled.length) {
+                showMsg(true, 'Please fill in at least your name and mobile number before sending.');
+                return;
+            }
+
+            var subjectBase = f.getAttribute('data-subject') || 'Website Enquiry';
+            var nameField = f.querySelector('[name="name"]');
+            var subject = subjectBase + (nameField && nameField.value ? ' — ' + nameField.value.trim() : '') + ' | Green Solar Energy Website';
+
+            var lines = ['New ' + subjectBase + ' from the Green Solar Energy website:', ''];
+            filled.forEach(function (el) { lines.push(fieldLabel(f, el) + ': ' + el.value.trim()); });
+            var body = lines.join('\r\n');
+
+            function buildMailto(b) {
+                return 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(b);
+            }
+
+            var mailto = buildMailto(body);
+
+            /* ---- guard against mail clients that silently drop overlong mailto: links ---- */
+            if (mailto.length > MAILTO_SAFE_LENGTH) {
+                var note = '\r\n\r\n(Message shortened for email compatibility.)';
+                while (mailto.length > MAILTO_SAFE_LENGTH && body.length > 20) {
+                    body = body.slice(0, -20);
+                    mailto = buildMailto(body + note);
+                }
+                mailto = buildMailto(body + note);
+            }
+
+            try {
+                window.location.href = mailto;
+                showMsg(false,
+                    'Thank you! Your email app should now open with this enquiry ready to send — please review it and click <strong>Send</strong>. ' +
+                    'If nothing opened, <a href="' + mailto + '">click here to email us directly</a>, or write to us at ' +
+                    '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.'
+                );
+                f.reset();
+            } catch (err) {
+                showMsg(true,
+                    'We could not open your email app automatically. Please email us directly at ' +
+                    '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a> or call ' +
+                    '<a href="tel:+917441176223">+91 74411 76223</a>.'
+                );
+            }
         });
     });
 
