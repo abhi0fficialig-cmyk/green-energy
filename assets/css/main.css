@@ -899,6 +899,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
     .sidebar { position: static; grid-template-columns: 1fr 1fr; }
     .process-grid, .counter-wrap { grid-template-columns: repeat(2, 1fr); }
     .counter-item:nth-child(2) { border-right: 0; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 34px 30px; }
     .section { padding: 76px 0; }
 }
 @media (max-width: 860px) {
@@ -914,7 +915,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 640px) {
     .g-2, .g-3, .g-4, .slab-grid, .systype-grid, .map-cards, .contact-cards, .process-grid,
     .counter-wrap, .gal-grid, .form-grid, .svc-gal, .sidebar, .co-stats,
-    .info-grid, .pmsg-strip { grid-template-columns: 1fr; }
+    .info-grid, .pmsg-strip, .footer-grid { grid-template-columns: 1fr; }
     .video-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .video-card .v-sound { width: 30px; height: 30px; font-size: .72rem; right: 8px; bottom: 8px; }
     .video-card .v-cap { font-size: .78rem; padding: 30px 10px 10px; }

@@ -334,7 +334,7 @@ def build_about():
     h = head("About Us — Green Solar Energy, Jaora",
              "Learn about Green Solar Energy — a Jaora based solar EPC company with 10+ years of experience, 1250+ installations and complete PM Surya Ghar subsidy assistance.")
     return (h + header("about")
-            + page_hero("About Us", "About Us", "hero-services.webp",
+            + page_hero("About Us", "About Us", "hero-page.webp",
                         "A local solar company built on honest sizing, genuine components and service that lasts the life of your plant.")
             + about_section("bg-white", full=True)
             + why_choose("bg-mint")
@@ -350,7 +350,7 @@ def build_services():
     h = head("Our Services — Solar Solutions in Madhya Pradesh | Green Solar Energy",
              "Residential, commercial, industrial and agricultural solar services — installation, inverters, batteries, water heaters, pumps, street lights, AMC and subsidy assistance.")
     return (h + header("services")
-            + page_hero("Our Services", "Services", "hero-services.webp",
+            + page_hero("Our Services", "Services", "hero-page.webp",
                         "Twelve complete solar services — designed, installed and serviced by our own team across Madhya Pradesh.")
             + services_section("bg-white", show_all_btn=False)
             + process_section("bg-mint")
@@ -374,7 +374,7 @@ def build_pmsg_page():
          "No — PM Surya Ghar is for residential connections only. Commercial and industrial consumers benefit instead from accelerated depreciation and net metering, which we also handle."),
     ]
     return (h + header("pm-surya-ghar-yojana")
-            + page_hero("PM Surya Ghar Muft Bijli Yojana", "PM Surya Ghar Yojana", "pmsg-3.jpg",
+            + page_hero("PM Surya Ghar Muft Bijli Yojana", "PM Surya Ghar Yojana", "hero-page.webp",
                         "Free electricity for your home with up to ₹78,000 central subsidy — and we file the entire application for you.")
             + pmsg_section(full=True)
             + why_choose("bg-white")
@@ -416,7 +416,7 @@ def build_gallery():
 </div>
 """
     return (h + header("gallery")
-            + page_hero("Our Gallery", "Gallery", "hero-services.webp",
+            + page_hero("Our Gallery", "Gallery", "hero-page.webp",
                         "A selection of the rooftops, factories, farms and streets we have powered with sunlight.")
             + gal
             + videos_section("bg-mint")
@@ -455,7 +455,7 @@ def build_contact():
 </section>
 {divider('bg-white')}"""
     return (h + header("contact")
-            + page_hero("Contact Us", "Contact", "hero-services.webp",
+            + page_hero("Contact Us", "Contact", "hero-page.webp",
                         "Call, WhatsApp or send us a message — we will arrange a free site survey at your convenience.")
             + cards
             + quote_section("bg-mint")
@@ -534,7 +534,7 @@ def build_service_page(s):
     h = head(f"{s['title']} in Jaora, Madhya Pradesh | Green Solar Energy",
              f"{s['short']} Green Solar Energy, Jaora — free site survey, genuine components and complete subsidy assistance.")
     return (h + header("service-detail")
-            + page_hero(s["title"], s["title"], s["imgs"][0], s["short"])
+            + page_hero(s["title"], s["title"], "hero-page.webp", s["short"])
             + body
             + process_section("bg-mint")
             + services_section("bg-white", limit=6, show_all_btn=True)

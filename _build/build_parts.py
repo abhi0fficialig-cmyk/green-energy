@@ -574,7 +574,7 @@ def cta_band():
 """
 
 
-def page_hero(title, crumb_label, img="hero-services.webp", sub=None):
+def page_hero(title, crumb_label, img="hero-page.webp", sub=None):
     subhtml = f'            <p style="color:#CFE0D6;max-width:660px;margin:0 auto 14px">{sub}</p>\n' if sub else ""
     return f"""<!-- page hero -->
 <section class="page-hero" style="background-image:url('{M}{img}')">
