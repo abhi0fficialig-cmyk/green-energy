@@ -14,7 +14,7 @@ SITE = {
     "hours": "Mon – Sat : 9:00 AM – 7:00 PM",
     # Live domain used for the sitemap and canonical/OG URLs.
     # Update this the day a custom domain goes live.
-    "domain": "https://green-energy-zeta-self.vercel.app",
+    "domain": "https://greenenergyjaora.vercel.app",
 }
 
 M = "media/"
