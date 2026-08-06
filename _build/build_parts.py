@@ -15,6 +15,7 @@ def head(title, desc, extra=""):
 <meta name="description" content="{desc}">
 <meta name="keywords" content="solar company Jaora, rooftop solar Madhya Pradesh, PM Surya Ghar Yojana, solar panel installation Ratlam, solar subsidy, Green Solar Energy">
 <meta name="author" content="{SITE['name']}">
+<meta name="google-site-verification" content="xJY4XXZI6AVzGwLP3UWiJireOBJYnu609fIh18GB6MA" />
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
