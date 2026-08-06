@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Generates the Green Solar Energy website."""
-import io, os, sys
+import datetime, io, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from build_data import SITE, SERVICES, WHY_CHOOSE, PROCESS, TESTIMONIALS, FAQS_HOME, VIDEOS, GALLERY
@@ -556,6 +556,43 @@ def build_404():
     return h + header("") + body + cta_band() + footer()
 
 
+# ------------------------------------------------------------------ sitemap & robots
+def build_sitemap():
+    """XML sitemap for search engines. 404.html is intentionally excluded —
+    error pages should never be submitted for indexing."""
+    today = datetime.date.today().isoformat()
+    pages = [
+        ("index.html", "1.0", "weekly"),
+        ("services.html", "0.9", "monthly"),
+        ("pm-surya-ghar-yojana.html", "0.9", "monthly"),
+        ("about.html", "0.7", "monthly"),
+        ("contact.html", "0.7", "monthly"),
+        ("gallery.html", "0.6", "monthly"),
+    ]
+    pages += [(f"service-{s['slug']}.html", "0.8", "monthly") for s in SERVICES]
+
+    urls = "".join(f"""    <url>
+        <loc>{SITE['domain']}/{path}</loc>
+        <lastmod>{today}</lastmod>
+        <changefreq>{freq}</changefreq>
+        <priority>{prio}</priority>
+    </url>
+""" for path, prio, freq in pages)
+
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls}</urlset>
+"""
+
+
+def build_robots():
+    return f"""User-agent: *
+Allow: /
+
+Sitemap: {SITE['domain']}/sitemap.xml
+"""
+
+
 if __name__ == "__main__":
     write("index.html", build_index())
     write("about.html", build_about())
@@ -566,4 +603,6 @@ if __name__ == "__main__":
     write("404.html", build_404())
     for s in SERVICES:
         write(f"service-{s['slug']}.html", build_service_page(s))
-    print("\nDone —", 7 + len(SERVICES), "pages")
+    write("sitemap.xml", build_sitemap())
+    write("robots.txt", build_robots())
+    print("\nDone —", 7 + len(SERVICES), "pages + sitemap.xml + robots.txt")

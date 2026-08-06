@@ -12,6 +12,9 @@ SITE = {
     "address": "Jaora, Madhya Pradesh",
     "address_full": "Jaora, District Ratlam, Madhya Pradesh 457226, India",
     "hours": "Mon – Sat : 9:00 AM – 7:00 PM",
+    # Live domain used for the sitemap and canonical/OG URLs.
+    # Update this the day a custom domain goes live.
+    "domain": "https://green-energy-zeta-self.vercel.app",
 }
 
 M = "media/"
