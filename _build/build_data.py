@@ -9,6 +9,13 @@ SITE = {
     "phone_disp": "+91 74411 76223",
     "phone_tel": "+917441176223",
     "wa": "https://wa.me/917441176223",
+    # Second contact person
+    "contact2_name": "Pranav Sharma",
+    "contact2_email": "Greenenergyconsultant2018@gmail.com",
+    "contact2_phones": [
+        ("+91 93404 50156", "+919340450156"),
+        ("+91 82260 31148", "+918226031148"),
+    ],
     "address": "Jaora, Madhya Pradesh",
     "address_full": "Jaora, District Ratlam, Madhya Pradesh 457226, India",
     "hours": "Mon – Sat : 9:00 AM – 7:00 PM",

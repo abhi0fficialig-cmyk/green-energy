@@ -5,6 +5,10 @@ from build_data import SITE, SERVICES, WHY_CHOOSE, PROCESS, TESTIMONIALS, FAQS_H
 M = "media/"
 
 
+def contact2_phone_links(sep):
+    return sep.join(f'<a href="tel:{tel}">{disp}</a>' for disp, tel in SITE["contact2_phones"])
+
+
 def head(title, desc, extra=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -198,6 +202,7 @@ def footer():
                     <li><i class="fas fa-location-dot"></i> <span>{SITE['address_full']}</span></li>
                     <li><i class="fas fa-phone-volume"></i> <span><a href="tel:{SITE['phone_tel']}">{SITE['phone_disp']}</a></span></li>
                     <li><i class="fas fa-envelope"></i> <span><a href="mailto:{SITE['email']}">{SITE['email']}</a></span></li>
+                    <li><i class="fas fa-user-tie"></i> <span>{SITE['contact2_name']}<br>{contact2_phone_links('<br>')}<br><a href="mailto:{SITE['contact2_email']}">{SITE['contact2_email']}</a></span></li>
                     <li><i class="fas fa-clock"></i> <span>{SITE['hours']}<br>Sunday : Emergency service only</span></li>
                 </ul>
                 <a href="{SITE['wa']}" target="_blank" rel="noopener" class="btn btn-amber" style="margin-top:6px"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
@@ -453,6 +458,10 @@ def quote_section(bg="bg-white"):
                         <div><span>Email Us</span><a href="mailto:{SITE['email']}">{SITE['email']}</a></div>
                     </li>
                     <li>
+                        <div class="ic"><i class="fas fa-user-tie"></i></div>
+                        <div><span>{SITE['contact2_name']}</span>{contact2_phone_links(' / ')}<br><a href="mailto:{SITE['contact2_email']}">{SITE['contact2_email']}</a></div>
+                    </li>
+                    <li>
                         <div class="ic"><i class="fas fa-clock"></i></div>
                         <div><span>Working Hours</span><strong>{SITE['hours']}</strong></div>
                     </li>
@@ -540,7 +549,7 @@ def location_section(bg="bg-mint"):
                 <div class="ic"><i class="fas fa-phone-volume"></i></div>
                 <div>
                     <h4>Call or WhatsApp</h4>
-                    <p><a href="tel:{SITE['phone_tel']}">{SITE['phone_disp']}</a><br><a href="mailto:{SITE['email']}">{SITE['email']}</a></p>
+                    <p><a href="tel:{SITE['phone_tel']}">{SITE['phone_disp']}</a><br><a href="mailto:{SITE['email']}">{SITE['email']}</a><br>{SITE['contact2_name']}: {contact2_phone_links(', ')}</p>
                 </div>
             </div>
             <div class="map-card reveal">

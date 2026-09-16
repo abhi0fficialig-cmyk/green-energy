@@ -445,6 +445,12 @@ def build_contact():
                 <p>We reply within one working day</p>
             </div>
             <div class="contact-card reveal">
+                <div class="ic"><i class="fas fa-user-tie"></i></div>
+                <h4>{SITE['contact2_name']}</h4>
+                <p>{P.contact2_phone_links('<br>')}</p>
+                <p><a href="mailto:{SITE['contact2_email']}">{SITE['contact2_email']}</a></p>
+            </div>
+            <div class="contact-card reveal">
                 <div class="ic"><i class="fas fa-location-dot"></i></div>
                 <h4>Visit Our Office</h4>
                 <p>{SITE['address_full']}</p>

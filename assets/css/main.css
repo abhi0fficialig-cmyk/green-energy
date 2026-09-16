@@ -871,7 +871,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 46px; align-items: start; }
-.contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.contact-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .contact-card {
     background: #fff; border: 2px solid var(--green-200); border-radius: var(--radius);
     padding: 30px 26px; text-align: center; transition: .3s;
@@ -883,7 +883,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .contact-card:nth-child(2) .ic { background: var(--amber-100); color: var(--amber-600); border-color: var(--amber-200); }
 .contact-card h4 { margin-bottom: .3em; }
-.contact-card a, .contact-card p { font-size: .96rem; color: var(--body); }
+.contact-card a, .contact-card p { font-size: .96rem; color: var(--body); overflow-wrap: anywhere; }
 .contact-card a:hover { color: var(--green); }
 
 /* ---------- Reveal animation ---------- */
