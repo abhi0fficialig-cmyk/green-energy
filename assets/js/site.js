@@ -248,7 +248,7 @@
        review it and press Send themselves. Replace with a real POST to a
        backend/mailer later if one is added — everything else (validation,
        success/error messaging) can stay as is. */
-    var CONTACT_EMAIL = 'Greenenergy51@gmail.com';
+    var CONTACT_EMAIL = 'Greenenergyconsultant2018@gmail.com';
     var MAILTO_SAFE_LENGTH = 1800; // conservative cross-client mailto: URL budget
 
     function fieldLabel(form, el) {
